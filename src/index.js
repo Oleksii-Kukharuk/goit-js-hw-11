@@ -16,7 +16,7 @@ function submitHandler(e) {
   imageApiServer.query = e.currentTarget.elements.searchQuery.value;
 
   galleryRef.innerHTML = '';
-  imageApiServer.fetchPhoto(imageApiServer.query);
+  imageApiServer.fetchPhoto();
 }
 
 console.log(inputFormRef);
