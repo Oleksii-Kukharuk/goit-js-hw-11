@@ -1,7 +1,18 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { createMarkup } from './js/markup';
 import ImageApiServer from './js/axios';
-const axios = require('axios').default;
+// const axios = require('axios').default;
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+let lightbox = new SimpleLightbox('.gallery a', {
+  captionType: 'alt',
+  captionsData: 'alt',
+  captionDelay: 250,
+  showCounter: false,
+  maxZoom: 2,
+  scrollZoomFactor: 0.1,
+});
 
 const imageApiServer = new ImageApiServer();
 
@@ -19,6 +30,10 @@ function submitHandler(e) {
   galleryRef.innerHTML = '';
   imageApiServer.resetPage();
   imageApiServer.fetchPhoto();
+
+  gallery.on('show.simplelightbox', function () {
+    // do something…
+  });
 }
 
 function loadMoreHandler() {

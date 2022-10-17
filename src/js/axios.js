@@ -37,7 +37,15 @@ export default class ImageApiServer {
       .then(function (response) {
         const data = response.data.hits;
         data.forEach(
-          ({ webformatURL, tags, likes, views, comments, downloads }) => {
+          ({
+            webformatURL,
+            tags,
+            likes,
+            views,
+            comments,
+            downloads,
+            largeImageURL,
+          }) => {
             const markup = createMarkup({
               webformatURL,
               tags,
@@ -45,6 +53,7 @@ export default class ImageApiServer {
               views,
               comments,
               downloads,
+              largeImageURL,
             });
             galleryRef.insertAdjacentHTML('beforeend', markup);
           }
