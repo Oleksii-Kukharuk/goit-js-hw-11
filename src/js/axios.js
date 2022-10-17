@@ -8,12 +8,12 @@ export default class ImageApiServer {
 
   fetchPhoto(q) {
     const config = {
-      url: 'https://pixabay.com/api',
+      url: 'https://pixabay.com/api/',
       method: 'get',
-      baseURL: 'https://pixabay.com/api',
+      baseURL: 'https://pixabay.com/api/',
       params: {
         key: '30638749-d35f41ebb6e3ac5e796b8db8e',
-        q: `${serchQuery}`,
+        q: `${q}`,
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: 'true',

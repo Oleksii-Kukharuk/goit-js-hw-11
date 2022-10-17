@@ -9,6 +9,8 @@ const galleryRef = document.querySelector('.gallery');
 const inputFormRef = document.querySelector('#search-form');
 const loadBtnRef = document.querySelector('.load-more');
 
+// let searchQuery = '';
+
 inputFormRef.addEventListener('submit', submitHandler);
 
 function submitHandler(e) {
