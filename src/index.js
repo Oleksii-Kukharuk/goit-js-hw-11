@@ -31,9 +31,7 @@ function submitHandler(e) {
   imageApiServer.resetPage();
   imageApiServer.fetchPhoto();
 
-  gallery.on('show.simplelightbox', function () {
-    // do something…
-  });
+  lightbox.refresh();
 }
 
 function loadMoreHandler() {
