@@ -6,6 +6,7 @@ const galleryRef = document.querySelector('.gallery');
 export default class ImageApiServer {
   constructor() {
     this.searchQuery = '';
+    this.page = 1;
   }
 
   fetchPhoto() {
@@ -20,14 +21,14 @@ export default class ImageApiServer {
         orientation: 'horizontal',
         safesearch: 'true',
         per_page: 40,
-        page: 1,
+        page: this.page,
 
         pageIncrement() {
-          this.params.page += 1;
+          this.page += 1;
         },
 
         pageReset() {
-          this.params.page = 1;
+          this.page = 1;
         },
       },
     };
@@ -49,11 +50,17 @@ export default class ImageApiServer {
           }
         );
       })
+      .then(data => {
+        this.page += 1;
+      })
       .catch(function (error) {
         console.log(error);
       });
   }
 
+  resetPage() {
+    this.page = 1;
+  }
   get query() {
     return this.searchQuery;
   }

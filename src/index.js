@@ -10,17 +10,17 @@ const inputFormRef = document.querySelector('#search-form');
 const loadBtnRef = document.querySelector('.load-more');
 
 inputFormRef.addEventListener('submit', submitHandler);
+loadBtnRef.addEventListener('click', loadMoreHandler);
 
 function submitHandler(e) {
   e.preventDefault();
   imageApiServer.query = e.currentTarget.elements.searchQuery.value;
 
   galleryRef.innerHTML = '';
+  imageApiServer.resetPage();
   imageApiServer.fetchPhoto();
 }
 
-console.log(inputFormRef);
-// function loadMoreHandler(e) {
-//   config.pageIncrement();
-// }
-// loadBtnRef.addEventListener('click', loadMoreHandler);
+function loadMoreHandler() {
+  imageApiServer.fetchPhoto();
+}
