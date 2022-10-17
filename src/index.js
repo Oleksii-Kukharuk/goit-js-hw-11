@@ -9,16 +9,14 @@ const galleryRef = document.querySelector('.gallery');
 const inputFormRef = document.querySelector('#search-form');
 const loadBtnRef = document.querySelector('.load-more');
 
-// let searchQuery = '';
-
 inputFormRef.addEventListener('submit', submitHandler);
 
 function submitHandler(e) {
   e.preventDefault();
-  serchQuery = e.currentTarget.elements.searchQuery.value;
+  imageApiServer.query = e.currentTarget.elements.searchQuery.value;
 
   galleryRef.innerHTML = '';
-  imageApiServer.fetchPhoto(serchQuery);
+  imageApiServer.fetchPhoto(imageApiServer.query);
 }
 
 console.log(inputFormRef);

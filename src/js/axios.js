@@ -4,16 +4,18 @@ const axios = require('axios').default;
 const galleryRef = document.querySelector('.gallery');
 
 export default class ImageApiServer {
-  constructor() {}
+  constructor() {
+    this.searchQuery = '';
+  }
 
-  fetchPhoto(q) {
+  fetchPhoto() {
     const config = {
       url: 'https://pixabay.com/api/',
       method: 'get',
       baseURL: 'https://pixabay.com/api/',
       params: {
         key: '30638749-d35f41ebb6e3ac5e796b8db8e',
-        q: `${q}`,
+        q: `${this.searchQuery}`,
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: 'true',
@@ -30,7 +32,7 @@ export default class ImageApiServer {
       },
     };
 
-    return axios(config)
+    axios(config)
       .then(function (response) {
         const data = response.data.hits;
         data.forEach(
@@ -50,5 +52,13 @@ export default class ImageApiServer {
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  get query() {
+    return this.searchQuery;
+  }
+
+  set query(newQuery) {
+    this.searchQuery = newQuery;
   }
 }
