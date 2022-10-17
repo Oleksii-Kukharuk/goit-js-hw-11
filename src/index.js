@@ -16,6 +16,7 @@ function submitHandler(e) {
 
   const config = {
     url: 'https://pixabay.com/api',
+    protocol: 'https',
     method: 'get',
     baseURL: 'https://pixabay.com/api',
     params: {
