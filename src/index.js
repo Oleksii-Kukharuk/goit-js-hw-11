@@ -16,9 +16,17 @@ function submitHandler(e) {
 
   const config = {
     url: 'https://pixabay.com/api',
-    protocol: 'https',
     method: 'get',
     baseURL: 'https://pixabay.com/api',
+    proxy: {
+      protocol: 'https',
+      host: '127.0.0.1',
+      port: 9000,
+      auth: {
+        username: 'mikeymike',
+        password: 'rapunz3l',
+      },
+    },
     params: {
       key: '30638749-d35f41ebb6e3ac5e796b8db8e',
       q: `${serchQuery}`,
