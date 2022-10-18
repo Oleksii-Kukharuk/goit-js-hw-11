@@ -7,6 +7,7 @@ export default class ImageApiServer {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
+    this.total = 0;
   }
 
   fetchPhoto() {
@@ -37,6 +38,7 @@ export default class ImageApiServer {
       .then(response => response)
       .then(data => {
         this.page += 1;
+        this.total += data.data.total;
         return data.data.hits;
       })
       .catch(function (error) {
@@ -55,8 +57,8 @@ export default class ImageApiServer {
     this.searchQuery = newQuery;
   }
 
-  get total() {
-    return this.total < this.totalHits;
+  get totall() {
+    return this.total;
   }
 }
 // const data = response.data.hits;

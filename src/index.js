@@ -36,9 +36,14 @@ function submitHandler(e) {
     Notify.success('look what I found for you');
   });
 
-  // if (!imageApiServer.total) {
+  // async function isShownBtnLoadMore() {
+  //   const totalPhotos = await imageApiServer.fetchPhoto('hits');
+  //   return totalPhotos;
+  // }
+  // isShownBtnLoadMore();
+  // if (imageApiServer.totall > 500) {
   loadBtnRef.classList.remove('visually-hidden');
-  //   Notify.info(`i found only ${data.total} photos`);
+  //   Notify.info(`i found only ${imageApiServer.total} photos`);
   // }
 }
 
