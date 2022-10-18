@@ -33,34 +33,11 @@ export default class ImageApiServer {
       },
     };
 
-    axios(config)
-      .then(function (response) {
-        const data = response.data.hits;
-        data.forEach(
-          ({
-            webformatURL,
-            tags,
-            likes,
-            views,
-            comments,
-            downloads,
-            largeImageURL,
-          }) => {
-            const markup = createMarkup({
-              webformatURL,
-              tags,
-              likes,
-              views,
-              comments,
-              downloads,
-              largeImageURL,
-            });
-            galleryRef.insertAdjacentHTML('beforeend', markup);
-          }
-        );
-      })
+    return axios(config)
+      .then(response => response)
       .then(data => {
         this.page += 1;
+        return data.data.hits;
       })
       .catch(function (error) {
         console.log(error);
@@ -78,3 +55,4 @@ export default class ImageApiServer {
     this.searchQuery = newQuery;
   }
 }
+// const data = response.data.hits;
