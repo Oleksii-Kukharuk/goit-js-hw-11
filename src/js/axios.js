@@ -54,5 +54,9 @@ export default class ImageApiServer {
   set query(newQuery) {
     this.searchQuery = newQuery;
   }
+
+  get total() {
+    return this.total < this.totalHits;
+  }
 }
 // const data = response.data.hits;

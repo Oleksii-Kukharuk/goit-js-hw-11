@@ -23,6 +23,7 @@ let lightbox = new SimpleLightbox('.gallery a', {
 });
 
 function submitHandler(e) {
+  loadBtnRef.classList.add('visually-hidden');
   e.preventDefault();
   imageApiServer.query = e.currentTarget.elements.searchQuery.value;
   galleryRef.innerHTML = '';
@@ -33,8 +34,12 @@ function submitHandler(e) {
       lightbox.refresh();
     });
     Notify.success('look what I found for you');
-    loadBtnRef.classList.remove('visually-hidden');
   });
+
+  // if (!imageApiServer.total) {
+  loadBtnRef.classList.remove('visually-hidden');
+  //   Notify.info(`i found only ${data.total} photos`);
+  // }
 }
 
 function loadMoreHandler() {
