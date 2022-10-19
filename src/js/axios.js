@@ -4,9 +4,10 @@ const axios = require('axios').default;
 const galleryRef = document.querySelector('.gallery');
 
 export default class ImageApiServer {
+  #totalPages = 0;
   constructor() {
     this.searchQuery = '';
-    this.page = 1;
+    this.page = 0;
     this.total = 0;
   }
 
@@ -23,23 +24,14 @@ export default class ImageApiServer {
         safesearch: 'true',
         per_page: 40,
         page: this.page,
-
-        pageIncrement() {
-          this.page += 1;
-        },
-
-        pageReset() {
-          this.page = 1;
-        },
       },
     };
 
     return axios(config)
       .then(response => response)
       .then(data => {
-        this.page += 1;
-        this.total += data.data.total;
-        return data.data.hits;
+        this.total = data.data.total;
+        return data.data;
       })
       .catch(function (error) {
         console.log(error);
@@ -49,6 +41,10 @@ export default class ImageApiServer {
   resetPage() {
     this.page = 1;
   }
+  pageIncrement() {
+    this.page += 1;
+  }
+
   get query() {
     return this.searchQuery;
   }
@@ -59,6 +55,18 @@ export default class ImageApiServer {
 
   get totall() {
     return this.total;
+  }
+
+  calculateTotalPages(totalHits) {
+    this.#totalPages = Math.ceil(totalHits / 40);
+  }
+
+  get isLoadBtnShown() {
+    return this.page < this.#totalPages;
+  }
+
+  get doubleCheck() {
+    return this.page >= this.#totalPages;
   }
 }
 // const data = response.data.hits;
