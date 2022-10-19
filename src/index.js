@@ -22,13 +22,13 @@ let lightbox = new SimpleLightbox('.gallery a', {
   scrollZoomFactor: 0.1,
 });
 
-function submitHandler(e) {
+async function submitHandler(e) {
   loadBtnRef.classList.add('visually-hidden');
   e.preventDefault();
   imageApiServer.query = e.currentTarget.elements.searchQuery.value;
   galleryRef.innerHTML = '';
   imageApiServer.resetPage();
-  imageApiServer.fetchPhoto().then(data => {
+  await imageApiServer.fetchPhoto().then(data => {
     data.map(data => {
       galleryRef.insertAdjacentHTML('beforeend', createMarkup(data));
       lightbox.refresh();
